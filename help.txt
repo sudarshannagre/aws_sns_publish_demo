@@ -1,0 +1,49 @@
+Spring boot + SNS Topic Creation, publish, delete etc
+
+Note : You can create Topic using code also
+
+Steps : How to Create Topic from the AWS Account
+
+1. Go to Amazon SNS and Click on 'create topic'
+2. If 'FIFO' is selected as Type (FIFO is only for SQS only) ---
+	2.1 Provide the appropriate Name as "TestTopic" and Display name also
+	2.2 If you want then Enbled the Encryption
+	2.3 Select 'Basic' Access policy
+	2.4 Select appropriate Publishers and Subscribers from the list
+	2.5 If you want Delivery status logging then provide the existing IAM role or create new one
+	2.6 Once all done click on create topic 
+
+3. If 'Standard' is selected as Type
+	3.1 Provide the appropriate Name as "TestTopic" and Display name also
+	3.2 If you want then Enbled the Encryption
+	3.3 Select 'Basic' Access policy
+	3.4 Select appropriate Publishers and Subscribers from the list
+	3.5 Data protection policy - select 'Basic' as Configuration mode
+	3.6 Delivery policy (HTTP/S) - keep default
+	3.7 If you want Delivery status logging then select 'protocols' and provide the existing IAM role or create new one
+	3.8 Tags are optional
+	3.9 Active tracing - select 'Don't use active tracing'
+	4.0 Once all done click on create topic
+	
+---------------------------------------------------------------
+
+But Below dependency in to pom.xml file
+
+	   <dependency>
+            <groupId>software.amazon.awssdk</groupId>
+            <artifactId>sns</artifactId>
+        </dependency>
+
+URI's
+To publish
+	(POST) http://localhost:8080/v1/topic
+	
+	Body as Json
+	{
+	  "subject": "test",
+	  "body": "test body"
+	}
+	
+To SubscribeEmail
+	(PUT) http://localhost:8080/v1/topic/yourEmail
+	
